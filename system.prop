@@ -24,7 +24,8 @@ ro.ngp_available=1
 ro.modem_available=0
 
 # Device gets 1% battery from charge_counter
-ro.product.use_charge_counter=1
+# Currently does not work with GB Kernel
+# ro.product.use_charge_counter=1
 
 # Default network type.
 # 4 => CDMA / EVDO.
@@ -43,7 +44,7 @@ wifi.interface = tiwlan0
 # This only affects the case in which there are remembered access points,
 # but none are in range.
 wifi.supplicant_scan_interval = 90
-ro.product.wifi_timeout=30000
+
 # Indicate carrier OTA SP number schema
 # refer to frameworks/base/telephony/java/com/android/
 # internal/telephony/cdma/CDMAPhone.java for the schema:
@@ -104,10 +105,10 @@ ro.cdma.nbpcd=1
 # BEGIN Motorola, a22417, 22-Mar-2010, IKDROID2-2345,default data roaming is on
 ro.com.android.dataroaming=true
 # END Motorola, a22417, 22-Mar-2010, IKDROID2-2345,default data roaming is on
-persist.mot.a2dp.direct = 1
+persist.mot.a2dp.direct = 0
 
 # System property for SMC
-ro.service.start.smc=1
+ro.service.start.smc=0
 # BEGIN Motorola, a21951, 17-Apr-2010, IKDROID2-3602
 # 0 disable
 # 1 enable
