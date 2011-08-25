@@ -243,10 +243,6 @@ adb pull /system/lib/libaudiopolicy.so ../../../vendor/motorola/$DEVICE/propriet
 adb pull /system/lib/hw/sensors.droid2.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/hw/lights.droid2.so ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/usr/keylayout/qwerty.kl ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/libVendor_ti_omx.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/libVendor_ti_omx_config_parser.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/lib/libstagefright.so ../../../vendor/motorola/$DEVICE/proprietary
-adb pull /system/etc/01_Vendor_ti_omx.cfg ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/etc/cameraCalFileDef.bin ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/etc/media_profiles.xml ../../../vendor/motorola/$DEVICE/proprietary
 adb pull /system/lib/libusc.so ../../../vendor/motorola/$DEVICE/proprietary
