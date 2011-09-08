@@ -78,6 +78,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.version.full=Blur_Version.2.3.340.MB810.Verizon.en.US \
     ro.build.config.version=GAS_NA_DROID2VZW_P011 \
     ro.build.config.date=Fri_Sep_17_21:53:21_-0500_2010 \
+    ro.kernel.android.checkjni=0 \
 
 #############################################################
 #    debug.mot.extwmlog=1 \
