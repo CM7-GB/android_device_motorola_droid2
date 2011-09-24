@@ -25,8 +25,6 @@
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := false
 
-TARGET_USE_MOTO_CUSTOM_CAMERA_PARAMETERS := true
-
 #BOARD_USE_YUV422I_DEFAULT_COLORFORMAT := true
 
 # inherit from the proprietary version
@@ -36,6 +34,9 @@ TARGET_USE_MOTO_CUSTOM_CAMERA_PARAMETERS := true
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 
 TARGET_BOARD_PLATFORM := omap3
+
+TARGET_PROVIDES_INIT_RC := true
+TARGET_USES_MOT_INIT := true
 
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
