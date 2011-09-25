@@ -25,8 +25,6 @@
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := false
 
-TARGET_USE_MOTO_CUSTOM_CAMERA_PARAMETERS := true
-
 #BOARD_USE_YUV422I_DEFAULT_COLORFORMAT := true
 
 # inherit from the proprietary version
