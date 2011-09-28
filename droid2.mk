@@ -145,7 +145,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/motorola/droid2/utilities/mke2fs:system/bin/mke2fs \
     device/motorola/droid2/utilities/tune2fs:system/bin/tune2fs \
-    device/motorola/shadow/releaseutils/check_kernel:system/etc/check_kernel \
+    device/motorola/droid2/releaseutils/check_kernel:system/etc/check_kernel \
     device/motorola/droid2/releaseutils/finalize_release:system/etc/finalize_release
 
 # copy all kernel modules under the "modules" directory to system/lib/modules
