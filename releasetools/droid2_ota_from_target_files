@@ -385,6 +385,8 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.RunFinalReleaseUtils()
 
   script.ShowProgress(0.2, 10)
+  
+    script.Print("A RevNumbers kang; Show some respect")
 
   script.ShowProgress(0.1, 0)
   device_specific.FullOTA_InstallEnd()
