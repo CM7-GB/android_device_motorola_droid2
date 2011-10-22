@@ -386,10 +386,10 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("  ")
   script.Print(" Installing /system... ")
   script.UnpackPackageDir("system", "/system")
+  symlinks = CopySystemFiles(input_zip, output_zip)
 
   script.Print("  ")
   script.Print(" Creating Symlinks... ")
-  symlinks = CopySystemFiles(input_zip, output_zip)
   script.MakeSymlinks(symlinks)
   
   script.Print("  ")
