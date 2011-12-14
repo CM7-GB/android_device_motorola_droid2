@@ -47,7 +47,6 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8
 
 
 # Kernel
-<<<<<<< HEAD
 TARGET_PREBUILT_KERNEL := device/motorola/droid2/kernel
 BOARD_KERNEL_CMDLINE := console=ttyS2,115200n8 rw mem=498M@0x80C00000 init=/init ip=off brdrev=P3A androidboot.bootloader=0x0000 mmcparts=mmcblk1:p7(pds),p15(boot),p16(recovery),p17(cdrom),p18(misc),p19(cid),p20(kpanic),p21(system),p22(cache),p23(preinstall),p24(userdata) androidboot.mode=reboot androidboot.bootloader=D011 androidboot.serialno=0A3A94CF0602D02
 BOARD_KERNEL_BASE := 0x10000000
