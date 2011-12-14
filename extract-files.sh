@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DEVICE=droid2
+DEVICE=droid2we
 
 mkdir -p ../../../vendor/motorola/$DEVICE/proprietary
 mkdir -p ../../../vendor/motorola/$DEVICE/proprietary/app
@@ -74,7 +74,10 @@ adb pull /system/bin/usbd ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/battd ../../../vendor/motorola/$DEVICE/proprietary/bin
 
 adb pull /system/etc/amazon-kindle.properties ../../../vendor/motorola/$DEVICE/proprietary/etc
+<<<<<<< HEAD
 adb pull /system/etc/arcplayer.cfg ../../../vendor/motorola/$DEVICE/proprietary/etc
+=======
+>>>>>>> bikeguy_d2g/ics
 adb pull /system/etc/backup_targets.csv ../../../vendor/motorola/$DEVICE/proprietary/etc
 adb pull /system/etc/cameraCalFileDef5M.bin ../../../vendor/motorola/$DEVICE/proprietary/etc
 adb pull /system/etc/excluded-input-devices.xml ../../../vendor/motorola/$DEVICE/proprietary/etc
@@ -131,9 +134,15 @@ adb pull /system/lib/egl/libgles1_texture_stream.so ../../../vendor/motorola/$DE
 adb pull /system/lib/egl/libgles2_texture_stream.so ../../../vendor/motorola/$DEVICE/proprietary/lib/egl
 
 adb pull /system/lib/hw/gralloc.omap3.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
+<<<<<<< HEAD
 adb pull /system/lib/hw/lights.droid2.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
 adb pull /system/lib/hw/sensors.droid2.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
 adb pull /system/lib/hw/gps.droid2.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
+=======
+adb pull /system/lib/hw/lights.droid2we.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
+adb pull /system/lib/hw/sensors.droid2we.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
+adb pull /system/lib/hw/gps.droid2we.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
+>>>>>>> bikeguy_d2g/ics
 adb pull /system/lib/hw/overlay.omap3.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
 
 adb pull /system/lib/libHPImgApi.so ../../../vendor/motorola/$DEVICE/proprietary/lib
@@ -222,9 +231,15 @@ adb pull /system/tts/lang_pico/en-US_ta.bin ../../../vendor/motorola/$DEVICE/pro
 adb pull /system/tts/lang_pico/es-ES_ta.bin ../../../vendor/motorola/$DEVICE/proprietary/tts/lang_pico
 adb pull /system/tts/lang_pico/es-ES_zl0_sg.bin ../../../vendor/motorola/$DEVICE/proprietary/tts/lang_pico
 
+<<<<<<< HEAD
 adb pull /system/usr/keychars/cdma_droid2-keypad.kcm.bin ../../../vendor/motorola/$DEVICE/proprietary/usr/keychars
 
 adb pull /system/usr/keylayout/cdma_droid2-keypad.kl ../../../vendor/motorola/$DEVICE/proprietary/usr/keylayout
+=======
+adb pull /system/usr/keychars/cdma_droid2we-keypad.kcm.bin ../../../vendor/motorola/$DEVICE/proprietary/usr/keychars
+
+adb pull /system/usr/keylayout/cdma_droid2we-keypad.kl ../../../vendor/motorola/$DEVICE/proprietary/usr/keylayout
+>>>>>>> bikeguy_d2g/ics
 adb pull /system/usr/keylayout/cpcap-key.kl ../../../vendor/motorola/$DEVICE/proprietary/usr/keylayout
 
 adb pull /system/xbin/backup ../../../vendor/motorola/$DEVICE/proprietary/xbin
@@ -269,7 +284,7 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/app/ProgramMenu.apk:/system/app/ProgramMenu.apk \\
     vendor/motorola/__DEVICE__/proprietary/app/ProgramMenuSystem.apk:/system/app/ProgramMenuSystem.apk \\
 
-# All the blobs necessary for droid2
+# All the blobs necessary for droid2we
 PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmoto_gps.so:/system/lib/libmoto_gps.so \\
     vendor/motorola/__DEVICE__/proprietary/bin/Hostapd:/system/bin/Hostapd \\
@@ -307,7 +322,10 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/bin/tstmetainfo:/system/bin/tstmetainfo \\
     vendor/motorola/__DEVICE__/proprietary/bin/usbd:/system/bin/usbd \\
     vendor/motorola/__DEVICE__/proprietary/etc/amazon-kindle.properties:/system/etc/amazon-kindle.properties \\
+<<<<<<< HEAD
     vendor/motorola/__DEVICE__/proprietary/etc/arcplayer.cfg:/system/etc/arcplayer.cfg \\
+=======
+>>>>>>> bikeguy_d2g/ics
     vendor/motorola/__DEVICE__/proprietary/etc/backup_targets.csv:/system/etc/backup_targets.csv \\
     vendor/motorola/__DEVICE__/proprietary/etc/cameraCalFileDef5M.bin:/system/etc/cameraCalFileDef5M.bin \\
     vendor/motorola/__DEVICE__/proprietary/etc/excluded-input-devices.xml:/system/etc/excluded-input-devices.xml \\
@@ -392,18 +410,24 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmoto_netutil.so:/system/lib/libmoto_netutil.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmoto_ril.so:/system/lib/libmoto_ril.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmotodbgutils.so:/system/lib/libmotodbgutils.so \\
+<<<<<<< HEAD
     vendor/motorola/__DEVICE__/proprietary/lib/libmotoims-sms.so:/system/lib/libmotoims-sms.so \\
+=======
+>>>>>>> bikeguy_d2g/ics
     vendor/motorola/__DEVICE__/proprietary/lib/libmtp_jni.so:/system/lib/libmtp_jni.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmtpstack.so:/system/lib/libmtpstack.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libnativedrm1.so:/system/lib/libnativedrm1.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/liboemcamera.so:/system/lib/liboemcamera.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libomx_arcomxcore_sharedlibrary.so:/system/lib/libomx_arcomxcore_sharedlibrary.so \\
+<<<<<<< HEAD
     vendor/motorola/__DEVICE__/proprietary/lib/libomx_evrcdec_sharedlibrary.so:/system/lib/libomx_evrcdec_sharedlibrary.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libomx_qcelpdec_sharedlibrary.so:/system/lib/libomx_qcelpdec_sharedlibrary.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libomx_qcelpenc_sharedlibrary.so:/system/lib/libomx_qcelpenc_sharedlibrary.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libomx_wmadec_sharedlibrary.so:/system/lib/libomx_wmadec_sharedlibrary.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libopencore_arcaudiolocal.so:/system/lib/libopencore_arcaudiolocal.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libopencore_arcaudiolocalreg.so:/system/lib/libopencore_arcaudiolocalreg.so \\
+=======
+>>>>>>> bikeguy_d2g/ics
     vendor/motorola/__DEVICE__/proprietary/lib/libpanorama.so:/system/lib/libpanorama.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libpanorama_jni.so:/system/lib/libpanorama_jni.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libpkip.so:/system/lib/libpkip.so \\
@@ -427,11 +451,19 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/tts/lang_pico/en-US_ta.bin:/system/tts/lang_pico/en-US_ta.bin \\
     vendor/motorola/__DEVICE__/proprietary/tts/lang_pico/es-ES_ta.bin:/system/tts/lang_pico/es-ES_ta.bin \\
     vendor/motorola/__DEVICE__/proprietary/tts/lang_pico/es-ES_zl0_sg.bin:/system/tts/lang_pico/es-ES_zl0_sg.bin \\
+<<<<<<< HEAD
     vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2-keypad.kcm.bin:/system/usr/keychars/cdma_droid2-keypad.kcm.bin \\
     vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2-keypad.kcm.bin:/system/usr/keychars/qwerty.kcm.bin \\
     vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2-keypad.kcm.bin:/system/usr/keychars/qwerty2.kcm.bin \\
     vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cdma_droid2-keypad.kl:/system/usr/keylayout/cdma_droid2-keypad.kl \\
     vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cdma_droid2-keypad.kl:/system/usr/keylayout/qwerty.kl \\
+=======
+    vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2we-keypad.kcm.bin:/system/usr/keychars/cdma_droid2we-keypad.kcm.bin \\
+    vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2we-keypad.kcm.bin:/system/usr/keychars/qwerty.kcm.bin \\
+    vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2we-keypad.kcm.bin:/system/usr/keychars/qwerty2.kcm.bin \\
+    vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cdma_droid2we-keypad.kl:/system/usr/keylayout/cdma_droid2we-keypad.kl \\
+    vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cdma_droid2we-keypad.kl:/system/usr/keylayout/qwerty.kl \\
+>>>>>>> bikeguy_d2g/ics
     vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cpcap-key.kl:/system/usr/keylayout/cpcap-key.kl \\
     vendor/motorola/__DEVICE__/proprietary/xbin/backup:/system/xbin/backup \\
     vendor/motorola/__DEVICE__/proprietary/xbin/drm1_func_test:/system/xbin/drm1_func_test \\
@@ -454,9 +486,15 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/lib/libbattd.so:/system/lib/libattd.so \\
     vendor/motorola/__DEVICE__/proprietary/bin/battd.so:/system/bin/battd \\
     vendor/motorola/__DEVICE__/proprietary/lib/libusc.so:/system/lib/libusc.so \\
+<<<<<<< HEAD
     vendor/motorola/__DEVICE__/proprietary/lib/hw/lights.droid2.so:/system/lib/hw/lights.droid2.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/hw/sensors.droid2.so:/system/lib/hw/sensors.droid2.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/hw/gps.droid2.so:/system/lib/hw/gps.droid2.so \\
+=======
+    vendor/motorola/__DEVICE__/proprietary/lib/hw/lights.droid2we.so:/system/lib/hw/lights.droid2we.so \\
+    vendor/motorola/__DEVICE__/proprietary/lib/hw/sensors.droid2we.so:/system/lib/hw/sensors.droid2we.so \\
+    vendor/motorola/__DEVICE__/proprietary/lib/hw/gps.droid2we.so:/system/lib/hw/gps.droid2we.so \\
+>>>>>>> bikeguy_d2g/ics
     vendor/motorola/__DEVICE__/proprietary/lib/hw/overlay.omap3.so:/system/lib/hw/overlay.omap3.so
 
 EOF
