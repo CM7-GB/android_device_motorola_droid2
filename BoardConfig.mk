@@ -37,11 +37,7 @@ TARGET_NO_BOOTLOADER := false
 TARGET_BOARD_PLATFORM := omap3
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-<<<<<<< HEAD
 TARGET_BOOTLOADER_BOARD_NAME := droid2
-=======
-TARGET_BOOTLOADER_BOARD_NAME := droid2we
->>>>>>> bikeguy_d2g/ics
 TARGET_CPU_SMP := false
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a8
@@ -60,23 +56,12 @@ BOARD_KERNEL_BASE := 0x10000000
 ENABLE_SENSORS_COMPAT := true
 
 # Connectivity - Wi-Fi
-BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := libCustomWifi
-WPA_SUPPLICANT_VERSION      := VER_0_6_X
-BOARD_WLAN_DEVICE           := wl1271
-BOARD_WLAN_TI_STA_DK_ROOT   := hardware/ti/wlan/wl1271
-=======
-TARGET_PREBUILT_KERNEL := device/motorola/droid2we/kernel
-BOARD_KERNEL_CMDLINE := console=ttyS2,115200n8 rw mem=498M@0x80C00000 init=/init ip=off brdrev=P3A androidboot.bootloader=0x0000 mmcparts=mmcblk1:p7(pds),p15(boot),p16(recovery),p17(cdrom),p18(misc),p19(cid),p20(kpanic),p21(system),p22(cache),p23(preinstall),p24(userdata) androidboot.mode=reboot androidboot.bootloader=D011 androidboot.serialno=0A3A94CF0602D02
-BOARD_KERNEL_BASE := 0x10000000
-
-# Connectivity - Wi-Fi
 #BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
 #BOARD_WPA_SUPPLICANT_PRIVATE_LIB := libCustomWifi
 WPA_SUPPLICANT_VERSION      := VER_0_6_X
 BOARD_WLAN_DEVICE           := tiwlan0
-#BOARD_WLAN_TI_STA_DK_ROOT   := system/wlan/ti/wilink_6_1
->>>>>>> bikeguy_d2g/ics
+#BOARD_WLAN_TI_STA_DK_ROOT   := hardware/ti/wlan/wl1271
+
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
 WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
 WIFI_DRIVER_MODULE_ARG      := ""
@@ -92,7 +77,6 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Recovery
-<<<<<<< HEAD
 BOARD_HAS_LOCKED_BOOTLOADER := true
 TARGET_PREBUILT_RECOVERY_KERNEL := device/motorola/droid2/kernel
 BOARD_ALWAYS_INSECURE := true
@@ -112,27 +96,19 @@ COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_
 BOARD_NO_RGBX_8888 := true
 DEFAULT_FB_NUM := 0
 BOARD_USE_YUV422I_DEFAULT_COLORFORMAT := true
-=======
-TARGET_PREBUILT_RECOVERY_KERNEL := device/motorola/droid2we/kernel
-BOARD_ALWAYS_INSECURE := true
-BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.recovery_mode; sync;"
-TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true
 
-#BOARD_BOOTIMAGE_PARTITION_SIZE := 0x003fffff
-#BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x004fffff
-#BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0bdfffff   # limited so we enforce room to grow
-#BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
-
-# Graphics
-BOARD_EGL_CFG := device/motorola/droid2we/prebuilt/etc/egl.cfg
 # strip GRALLOC_USAGE_HW_COMPOSER from gralloc alloc
 BOARD_EGL_GRALLOC_USAGE_FILTER := 0x00000800
 BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK := true
 ifdef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
 COMMON_GLOBAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
 endif
->>>>>>> bikeguy_d2g/ics
+
+TARGET_PREBUILT_RECOVERY_KERNEL := device/motorola/droid2/kernel
+BOARD_ALWAYS_INSECURE := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.recovery_mode; sync;"
+TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true
 
 # OMX
 HARDWARE_OMX := true
@@ -142,15 +118,6 @@ OMX_VENDOR_WRAPPER := TI_OMX_Wrapper
 BOARD_OPENCORE_LIBRARIES := libOMX_Core
 BOARD_OPENCORE_FLAGS := -DHARDWARE_OMX=1
 endif
-<<<<<<< HEAD
-OMX_TI_OMAP_TIER_LEVEL := 10
-
-# OMAP
-OMAP_ENHANCEMENT := true
-ifdef OMAP_ENHANCEMENT
-COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP3
-endif
-=======
 #OMX_TI_OMAP_TIER_LEVEL := 10
 
 # OMAP
@@ -158,8 +125,6 @@ endif
 #ifdef OMAP_ENHANCEMENT
 #COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP3
 #endif
->>>>>>> bikeguy_d2g/ics
-
 
 # MOTOROLA
 USE_MOTOROLA_CODE := true
@@ -176,12 +141,6 @@ TARGET_PROVIDES_RELEASETOOLS := true
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/motorola/droid2we/releasetools/droid2we_ota_from_target_files
 TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/droid2we/releasetools/droid2we_img_from_target_files
 
-<<<<<<< HEAD
-# UMS
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun%d/file"
-
-=======
->>>>>>> bikeguy_d2g/ics
 # Hijack
 #TARGET_NEEDS_MOTOROLA_HIJACK := true
 #BOARD_HIJACK_LOG_ENABLE := true
@@ -190,14 +149,8 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun%d
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_NEEDS_CUTILS_LOG := true
 BOARD_USES_SECURE_SERVICES := true
-<<<<<<< HEAD
 BOARD_USE_BATTERY_CHARGE_COUNTER := true
 BOARD_ALWAYS_INSECURE := true
 
 DROID2_HARDWARE := true
 BOARD_GLOBAL_CFLAGS += -DDROID2_HARDWARE
-=======
-
-DROID2WE_HARDWARE := true
-BOARD_GLOBAL_CFLAGS += -DDROID2WE_HARDWARE
->>>>>>> bikeguy_d2g/ics
