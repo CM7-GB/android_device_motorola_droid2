@@ -22,7 +22,7 @@
 #include <dirent.h>
 #include <sys/select.h>
 
-#include "kernel/akm8975.h"
+#include <linux/akm8973.h>
 
 #include <cutils/log.h>
 
@@ -38,11 +38,6 @@ AkmSensor::AkmSensor()
 {
     memset(mPendingEvents, 0, sizeof(mPendingEvents));
 
-    mPendingEvents[Accelerometer].version = sizeof(sensors_event_t);
-    mPendingEvents[Accelerometer].sensor = ID_A;
-    mPendingEvents[Accelerometer].type = SENSOR_TYPE_ACCELEROMETER;
-    mPendingEvents[Accelerometer].acceleration.status = SENSOR_STATUS_ACCURACY_HIGH;
-
     mPendingEvents[MagneticField].version = sizeof(sensors_event_t);
     mPendingEvents[MagneticField].sensor = ID_M;
     mPendingEvents[MagneticField].type = SENSOR_TYPE_MAGNETIC_FIELD;
@@ -53,6 +48,10 @@ AkmSensor::AkmSensor()
     mPendingEvents[Orientation  ].type = SENSOR_TYPE_ORIENTATION;
     mPendingEvents[Orientation  ].orientation.status = SENSOR_STATUS_ACCURACY_HIGH;
 
+    mPendingEvents[Temperature  ].version = sizeof(sensors_event_t);
+    mPendingEvents[Temperature  ].sensor = ID_T;
+    mPendingEvents[Temperature  ].type = SENSOR_TYPE_TEMPERATURE;
+
     for (int i=0 ; i<numSensors ; i++)
         mDelays[i] = 200000000; // 200 ms by default
 
@@ -62,20 +61,6 @@ AkmSensor::AkmSensor()
 
     open_device();
 
-    if (!ioctl(dev_fd, ECS_IOCTL_APP_GET_AFLAG, &flags)) {
-        if (flags)  {
-            mEnabled |= 1<<Accelerometer;
-            if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ACCEL_X), &absinfo)) {
-                mPendingEvents[Accelerometer].acceleration.x = absinfo.value * CONVERT_A_X;
-            }
-            if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ACCEL_Y), &absinfo)) {
-                mPendingEvents[Accelerometer].acceleration.y = absinfo.value * CONVERT_A_Y;
-            }
-            if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ACCEL_Z), &absinfo)) {
-                mPendingEvents[Accelerometer].acceleration.z = absinfo.value * CONVERT_A_Z;
-            }
-        }
-    }
     if (!ioctl(dev_fd, ECS_IOCTL_APP_GET_MVFLAG, &flags)) {
         if (flags)  {
             mEnabled |= 1<<MagneticField;
@@ -94,23 +79,27 @@ AkmSensor::AkmSensor()
         if (flags)  {
             mEnabled |= 1<<Orientation;
             if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_YAW), &absinfo)) {
-                mPendingEvents[Orientation].orientation.azimuth = absinfo.value;
+                mPendingEvents[Orientation].orientation.azimuth = absinfo.value * CONVERT_O_Y;
             }
             if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_PITCH), &absinfo)) {
-                mPendingEvents[Orientation].orientation.pitch = absinfo.value;
+                mPendingEvents[Orientation].orientation.pitch = absinfo.value * CONVERT_O_P;
             }
             if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ROLL), &absinfo)) {
-                mPendingEvents[Orientation].orientation.roll = -absinfo.value;
+                mPendingEvents[Orientation].orientation.roll = absinfo.value * CONVERT_O_R;
             }
             if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ORIENT_STATUS), &absinfo)) {
                 mPendingEvents[Orientation].orientation.status = uint8_t(absinfo.value & SENSOR_STATE_MASK);
             }
         }
     }
-
-    // disable temperature sensor, since it is not reported
-    flags = 0;
-    ioctl(dev_fd, ECS_IOCTL_APP_SET_TFLAG, &flags);
+    if (!ioctl(dev_fd, ECS_IOCTL_APP_GET_TFLAG, &flags)) {
+        if (flags)  {
+            mEnabled |= 1<<Temperature;
+            if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_TEMPERATURE), &absinfo)) {
+                mPendingEvents[Temperature].temperature = absinfo.value * CONVERT_T;
+            }
+        }
+    }
 
     if (!mEnabled) {
         close_device();
@@ -124,9 +113,9 @@ int AkmSensor::enable(int32_t handle, int en)
 {
     int what = -1;
     switch (handle) {
-        case ID_A: what = Accelerometer; break;
         case ID_M: what = MagneticField; break;
         case ID_O: what = Orientation;   break;
+        case ID_T: what = Temperature;   break;
     }
 
     if (uint32_t(what) >= numSensors)
@@ -141,9 +130,9 @@ int AkmSensor::enable(int32_t handle, int en)
         }
         int cmd;
         switch (what) {
-            case Accelerometer: cmd = ECS_IOCTL_APP_SET_AFLAG;  break;
             case MagneticField: cmd = ECS_IOCTL_APP_SET_MVFLAG; break;
             case Orientation:   cmd = ECS_IOCTL_APP_SET_MFLAG;  break;
+            case Temperature:   cmd = ECS_IOCTL_APP_SET_TFLAG;  break;
         }
         short flags = newState;
         err = ioctl(dev_fd, cmd, &flags);
@@ -166,9 +155,9 @@ int AkmSensor::setDelay(int32_t handle, int64_t ns)
 #ifdef ECS_IOCTL_APP_SET_DELAY
     int what = -1;
     switch (handle) {
-        case ID_A: what = Accelerometer; break;
         case ID_M: what = MagneticField; break;
         case ID_O: what = Orientation;   break;
+        case ID_T: what = Temperature;   break;
     }
 
     if (uint32_t(what) >= numSensors)
@@ -248,18 +237,6 @@ int AkmSensor::readEvents(sensors_event_t* data, int count)
 void AkmSensor::processEvent(int code, int value)
 {
     switch (code) {
-        case EVENT_TYPE_ACCEL_X:
-            mPendingMask |= 1<<Accelerometer;
-            mPendingEvents[Accelerometer].acceleration.x = value * CONVERT_A_X;
-            break;
-        case EVENT_TYPE_ACCEL_Y:
-            mPendingMask |= 1<<Accelerometer;
-            mPendingEvents[Accelerometer].acceleration.y = value * CONVERT_A_Y;
-            break;
-        case EVENT_TYPE_ACCEL_Z:
-            mPendingMask |= 1<<Accelerometer;
-            mPendingEvents[Accelerometer].acceleration.z = value * CONVERT_A_Z;
-            break;
 
         case EVENT_TYPE_MAGV_X:
             mPendingMask |= 1<<MagneticField;
@@ -291,5 +268,9 @@ void AkmSensor::processEvent(int code, int value)
             mPendingEvents[Orientation].orientation.status =
                     uint8_t(value & SENSOR_STATE_MASK);
             break;
+
+        case EVENT_TYPE_TEMPERATURE:
+            mPendingMask |= 1<<Temperature;
+            mPendingEvents[Temperature].temperature = value * CONVERT_T;
     }
 }
