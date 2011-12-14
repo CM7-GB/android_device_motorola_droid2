@@ -347,8 +347,9 @@ def WriteFullOTAPackage(input_zip, output_zip):
 #    script.AssertOlderBuild(ts)
 
   script.Print("-=  CM9 Pre-Alpha  =-")
-  script.Print(" Port by: bikedude880")
-  script.Print("  ")
+  script.Print("Port credits:")
+  script.Print("  bikedude880")
+  script.Print("  JBirdVegas")  
 
 # kernel check...
 #  script.Print(" Checking Kernel Version...  ")
