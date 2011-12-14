@@ -37,9 +37,9 @@ public:
     virtual ~AkmSensor();
 
     enum {
-        MagneticField   = 0,
-        Orientation     = 1,
-        Temperature     = 2,
+        Accelerometer   = 0,
+        MagneticField   = 1,
+        Orientation     = 2,
         numSensors
     };
 
