@@ -69,8 +69,8 @@ import tempfile
 import time
 import zipfile
 
-import droid2we_common as common
-import droid2we_edify_generator as edify_generator
+import droid2_common as common
+import droid2_edify_generator as edify_generator
 
 OPTIONS = common.OPTIONS
 OPTIONS.package_key = "build/target/product/security/testkey"
@@ -345,15 +345,6 @@ def WriteFullOTAPackage(input_zip, output_zip):
 #  if not OPTIONS.omit_prereq:
 #    ts = GetBuildProp("ro.build.date.utc", input_zip)
 #    script.AssertOlderBuild(ts)
-  
-  script.Print("  ")                                          
-  script.Print(" ___  _        _ ____ ___  _____   _____ ____  ")
-  script.Print("/  _\/ \__/|\ / |  _ Y_  \/  __/  /  __//  __\ ")
-  script.Print("| /  | |\/||_\| | | \|/  /| |  ___| |  _| | // ")
-  script.Print("| \__| |  ||  | | |_/|  /_| |_//\_\ |_//| |_|\ ")
-  script.Print("\___/\_/  \|  \_|____|___/\____\  \____\/____/ ")
-  script.Print(" A RevNumbers Kang")
-  script.Print("  ")
 
 # kernel check...
 #  script.Print(" Checking Kernel Version...  ")
