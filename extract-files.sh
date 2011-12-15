@@ -63,6 +63,7 @@ adb pull /system/bin/napics.sh ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/pppd ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/pppd-ril ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/pvrsrvinit ../../../vendor/motorola/$DEVICE/proprietary/bin
+adb pull /system/bin/rild ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/secclkd ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/smc_pa_ctrl ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/smoduled ../../../vendor/motorola/$DEVICE/proprietary/bin
@@ -136,6 +137,8 @@ adb pull /system/lib/hw/sensors.droid2.so ../../../vendor/motorola/$DEVICE/propr
 adb pull /system/lib/hw/gps.droid2.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
 adb pull /system/lib/hw/overlay.omap3.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
 
+adb pull /system/lib/liba2dp.so ../../../vendor/motorola/$DEVICE/proprietary/lib
+adb pull /system/lib/libaudiopolicy.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libHPImgApi.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libIMGegl.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libOMX.TI.AAC.decode.so ../../../vendor/motorola/$DEVICE/proprietary/lib
