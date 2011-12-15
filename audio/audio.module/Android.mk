@@ -20,7 +20,7 @@ LOCAL_STATIC_LIBRARIES := \
 LOCAL_WHOLE_STATIC_LIBRARIES := \
     libaudiohw_legacy
 
-LOCAL_MODULE := audio.primary.droid2we
+LOCAL_MODULE := audio.primary.droid2
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_MODULE_TAGS := optional
 

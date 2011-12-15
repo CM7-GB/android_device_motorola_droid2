@@ -27,7 +27,7 @@ USE_CAMERA_STUB := false
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # inherit from the proprietary version
--include vendor/motorola/droid2we/BoardConfigVendor.mk
+-include vendor/motorola/droid2/BoardConfigVendor.mk
 
 # use pre-kernel.35 vold usb mounting
 #BOARD_USE_USB_MASS_STORAGE_SWITCH := true
@@ -141,8 +141,8 @@ endif
 
 # OTA Packaging
 TARGET_PROVIDES_RELEASETOOLS := true
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/motorola/droid2we/releasetools/droid2we_ota_from_target_files
-TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/droid2we/releasetools/droid2we_img_from_target_files
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/motorola/droid2/releasetools/droid2_ota_from_target_files
+TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := device/motorola/droid2/releasetools/droid2_img_from_target_files
 
 # Hijack
 #TARGET_NEEDS_MOTOROLA_HIJACK := true

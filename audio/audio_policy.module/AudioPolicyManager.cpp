@@ -25,7 +25,7 @@ namespace android_audio_legacy {
 
 
 // ----------------------------------------------------------------------------
-// AudioPolicyManager for droid2we platform (based on jordan)
+// AudioPolicyManager for droid2 platform (based on jordan)
 // Common audio policy manager code is implemented in AudioPolicyManagerBase class
 // ----------------------------------------------------------------------------
 

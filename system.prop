@@ -1,5 +1,5 @@
 #
-# system.prop for CDMA Droid2WE
+# system.prop for CDMA Droid2
 #
 # rild.libpath=/system/lib/libril-moto-umts-1.so
 rild.libpath=/system/lib/libmoto_ril.so
