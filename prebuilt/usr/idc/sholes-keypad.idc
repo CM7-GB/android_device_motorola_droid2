@@ -13,12 +13,15 @@
 # limitations under the License.
 
 #
-# Droid2 Global QTouch Input Device Configuration
+# Droid2 Global Input Device Configuration
 #
 # Initial revision by bikedude880
 
-touch.deviceType = touchScreen
-touch.orientationAware = 1
+# The keyboard is internal because it is part of the device.
+device.internal = 1
 
-keyboard.layout = qtouch-touchscreen
-keyboard.characterMap = qtouch-touchscreen
+keyboard.builtIn = 1
+keyboard.orientationAware = 1
+
+keyboard.layout = sholes-keypad
+keyboard.characterMap = sholes-keypad
