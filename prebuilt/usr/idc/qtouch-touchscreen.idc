@@ -13,12 +13,11 @@
 # limitations under the License.
 
 #
-# Droid2 Global QTouch Input Device Configuration
+# Emulator keyboard configuration file #1.
 #
-# Initial revision by bikedude880
 
 touch.deviceType = touchScreen
 touch.orientationAware = 1
 
 keyboard.layout = qtouch-touchscreen
-keyboard.characterMap = qtouch-touchscreen
+keyboard.characterMap = qwerty
