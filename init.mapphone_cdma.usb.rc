@@ -17,7 +17,6 @@ on property:sys.usb.config=mass_storage,adb
     exec /system/bin/am broadcast \
         -a com.motorola.intent.action.USB_MODE_SWITCH_FROM_UI \
         --ei USB_MODE_INDEX 2
-    start adbd
     setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.config=mass_storage
