@@ -23,9 +23,6 @@ on post-fs
     chmod 0777 /tmp
     chown system shell /tmp
 
-    symlink /dev/ttyGS0 /dev/acm0
-
-
 # Create mountpoints and mount tmpfs
 
     mkdir /mnt 0775 root system
@@ -109,7 +106,7 @@ on post-fs
     chmod 0740 /pds/factory
 
 # Tweaks
-    write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
+    write /sys/block/mmcblk0/bdi/read_ahead_kb 512
 
 # Mount preinstall partition
     mkdir /preinstall 0771 system system
@@ -377,29 +374,6 @@ on boot
     chmod 0660 /sys/class/leds/adp8870-led7/brightness
     chmod 0660 /sys/class/backlight/lm3532_bl/brightness
 
-#fix for torch
-    chmod 0666 /sys/class/leds/spotlight/brightness
-    chmod 0666 /sys/class/leds/torch-flash/brightness
-    chmod 0666 /sys/class/leds/torch-flash/flash_light
-
-# Enable panic on softlockup
-    write /proc/sys/kernel/softlockup_panic 1
-
-# Load traffic shaping modules
-    insmod /system/lib/modules/ifb.ko
-    insmod /system/lib/modules/act_mirred.ko
-    insmod /system/lib/modules/sch_ingress.ko
-    insmod /system/lib/modules/act_police.ko
-    insmod /system/lib/modules/cls_u32.ko
-    insmod /system/lib/modules/sch_htb.ko
-    insmod /system/lib/modules/em_u32.ko
-
-# Load Authentec VPN kernel module
-#    insmod /system/lib/modules/vpnclient.ko
-
-# Set core max size (2G)
-    setrlimit 4 2147483648 2147483648
-
 # The properties introduced by moto
 on property:sys.chargeonly.mode=1
     start battd
@@ -472,54 +446,6 @@ service battd /system/bin/battd
 # Bluetooth services.
 service hciattach /system/bin/hciattach -n -t 10 /dev/ttyS1 texasalt 3000000 flow
     class late_start
-    stop dhcpcd
-
-# The following services are added by moto
-# Set property strings for ATVC logging
-# This conditionally sets :
-# ro.sys.atvc_allow_bp_log
-# ro.sys.atvc_allow_gki_log
-# ro.sys.atvc_allow_ap_mot_log
-# ro.sys.atvc_allow_all_core
-# ro.sys.atvc_allow_res_core
-# ro.sys.atvc_allow_res_panic
-# ro.sys.atvc_allow_efem
-# ro.sys.atvc_allow_netmon_usb
-# ro.sys.atvc_allow_netmon_ih
-# ro.sys.atvc_allow_all_adb
-
-#service atvc /system/bin/dbvc_atvc_property_set
-#    user system
-#    group system
-#    oneshot
-
-#service watchdogd /system/bin/watchdogd
-
-service telnet /system/bin/telnetd
-    class core
-    oneshot
-
-#service usbd /system/bin/usbd
-#    user root
-#    group system
-
-#service battd /system/bin/battd
-#    socket battdsock stream 0660 mot_accy mot_accy
-#    user root
-#    group mot_accy mot_pwric
-#    oneshot
-
-#service catcommands /system/bin/catcommands
-#    group radio
-
-service hciattach /system/bin/hciattach \
-        -n -t 10 /dev/ttyS1 texasalt 3000000 flow
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-
-service hciattach_rfmd /system/bin/hciattach \
-        -n -t 10 /dev/ttyS1 texasalt_rfmd 3000000 flow
     user bluetooth
     group bluetooth net_bt_admin
     disabled
@@ -548,11 +474,6 @@ service del_panu /system/bin/sdptool remove PANU
     disabled
     oneshot
 
-#service napics /system/bin/sh /system/bin/napics.sh
-#    user root
-#    disabled
-#    oneshot
-
 service btdhcpd /system/bin/dnsmasq -C /etc/btpan.conf
     user root
     disabled
@@ -565,55 +486,25 @@ service map /system/bin/sdptool add --channel=20 --network=2 MAP
     disabled
     oneshot
 
-#service tcmd /system/bin/tcmd
-#    group radio input system log camera graphics sdcard_rw audio inet bluetooth wifi compass net_bt_admin mount net_raw net_admin
-#    socket local_tcmd stream 0660 system system
-#    socket batch_socket stream 0600 system system
-#    oneshot
+service napics /system/bin/sh /system/bin/napics.sh
+    class late_start
+    user root
+    disabled
+    oneshot
 
-#service tcmdhelp /system/bin/tcmdhelp
-#    socket tcmdhelp stream 0600 system system
-#    oneshot
-#    disabled
+# TCMD
+service tcmd /system/bin/tcmd
+    class late_start
+    group mot_tcmd radio mot_pwric input system log camera graphics mot_accy sdcard_rw audio inet bluetooth wifi compass net_bt_admin mot_tombstone mot_tpapi mount net_raw net_admin mot_whisper media
+    socket local_tcmd stream 0660 mot_tcmd mot_tcmd
+    socket batch_socket stream 0600 mot_tcmd mot_tcmd
+    oneshot
 
-# turn on wifi for tcmd step one
-on property:tcmd.load_wlan=1
-    insmod /system/lib/modules/tiwlan_drv.ko
-
-# turn on wifi for tcmd step two
-on property:tcmd.load_wlan=2
-    start wlan_loader
-
-# turn on wifi for tcmd step three
-on property:tcmd.load_wlan=3
-    exec /system/bin/ifconfig tiwlan0 up
-
-# turn off wifi for tcmd step one
-on property:tcmd.unload_wlan=1
-    exec /system/bin/ifconfig tiwlan0 down
-
-# turn off wifi for tcmd step two
-on property:tcmd.unload_wlan=2
-    exec /system/bin/rmmod tiwlan_drv
-    setprop wlan.driver.status unloaded
-
-# turn on bluetooth for tcmd
-on property:tcmd.bt_mod=1
-    insmod /system/lib/modules/wl127x_test.ko
-
-#turn off bluetooth for tcmd
-on property:tcmd.bt_mod=0
-    exec /system/bin/rmmod wl127x_test
-
-#execute tcmdhelp
-on property:tcmd.start_tcmdhelp=1
-    start tcmdhelp
-
-#service panic_daemon /system/usr/bin/panic_daemon
-#    user radio
-#    group log radio system graphics sdcard_rw
-#    socket panic_daemon stream 660 radio radio
-#    onrestart exec /system/bin/reboot
+service tcmdhelp /system/bin/tcmdhelp
+    class late_start
+    socket tcmdhelp stream 0600 mot_tcmd mot_tcmd
+    oneshot
+    disabled
 
 #execute tcmdhelp
 on property:tcmd.start_tcmdhelp=1
@@ -621,136 +512,117 @@ on property:tcmd.start_tcmdhelp=1
 
 # Ecompass daemon
 service akmd2 /system/bin/akmd2
-    class main
+    class core
     user compass
     group compass misc input
 
-#service wlan_loader /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_wlan1271.bin -i /system/etc/wifi/tiwlan.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    disabled
-#    oneshot
+# Wifi services
+service wlan_loader /system/bin/wlan_loader -f /system/etc/wifi/fw_wlan1271.bin -i /system/etc/wifi/tiwlan.ini -e /pds/wifi/nvs_map.bin
+    class late_start
+    disabled
+    oneshot
 
-#service wlan_loader_rfmd /system/bin/wlan_loader \
-#        -f /system/etc/wifi/fw_wlan1271_rfmd.bin -i /system/etc/wifi/tiwlan_rfmd.ini \
-#        -e /pds/wifi/nvs_map.bin
-#    disabled
-#    oneshot
+service wpa_supplicant /system/bin/wpa_supplicant -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
+    class late_start
+    socket wpa_tiwlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
-#service wpa_supplicant /system/bin/wpa_supplicant \
-#        -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf
-# we will start as root and wpa_supplicant will switch to user wifi
-# after setting up the capabilities required for WEXT
-# user wifi
-# group wifi inet keystore
-#    socket wpa_tiwlan0 dgram 660 wifi wifi
-#    disabled
-#    oneshot
+service wlan_ap_loader /system/bin/logwrapper /system/bin/wlan_loader -f /system/etc/wifi/fw_tiwlan_ap.bin -i /system/etc/wifi/tiwlan_ap.ini -e /pds/wifi/nvs_map.bin
+    disabled
+    oneshot
 
-#service dhcpcd_tiwlan0 /system/bin/dhcpcd -ABKL tiwlan0
-#    disabled
-#    oneshot
+service hostapd /system/bin/logwrapper /system/bin/hostap -d /data/misc/wifi/hostapd.conf
+    class main
+    disabled
+    oneshot
 
-#service autoip /system/bin/dhcpcd -BK tiwlan0
-#    disabled
-#    oneshot
+service dhcpcd_tiwlan0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
 
-#service btdhcpcd /system/bin/dhcpcd -ABKL bnep0
-#    disabled
-#    oneshot
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+    class main
+    disabled
+    oneshot
 
-#service btautoip /system/bin/dhcpcd -BK bnep0
-#    disabled
-#    oneshot
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
 
-#service baseimage /system/bin/dspexec -v -T /system/lib/dsp/baseimage.dof
-#    class media_early_init
-#    user media
-#    group media graphics
-#    oneshot
+service iprenew_tiwlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
 
+service iprenew_p2p /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+# DSP
+service baseimage /system/bin/dspexec -v -T /system/lib/dsp/baseimage.dof
+    class media_early_init
+    user media
+    group media graphics
+    oneshot
+
+service secclkd /system/bin/secclkd
+    class late_start
+    socket secclk_socket stream 660 mot_secclkd mot_secclkd
+    user mot_tpapi
+    group mot_tpapi mot_sec_rtc mot_secclkd
+    oneshot
+
+# 3D init
 service pvrsrv /system/bin/pvrsrvinit
     class core
     user root
+    group root
     oneshot
 
-# bugtogo is triggered by the keycodes defined in vendor/moto/<product>/proprietary/<hw rev>/device_tree.xml
-# The keycodes option is listed below with dummy values, because the parser needs this.
-#service bugtogo /system/bin/bugtogo.sh
-#    disabled
-#    user root
-#    oneshot
-#    keycodes 0 1
+# Radio
+service pppd /system/bin/pppd silent ipparam dun plugin /system/lib/libpppd_plugin.so
+    class main
+    user root
+    disabled
+    oneshot
 
-#service pppd-ril /system/bin/pppd-ril /dev/ttyUSB0 \
-#        call pppd-ril.options plugin /system/lib/libpppd_plugin-ril.so
-#    user root
-#    disabled
-#    oneshot
+service pppd-ril /system/bin/pppd-ril /dev/ttyUSB0 call pppd-ril.options plugin /system/lib/libpppd_plugin-ril.so
+    class late_start
+    user root
+    disabled
+    oneshot
 
-#service pppd /system/bin/pppd silent ipparam dun plugin \
-#        /system/lib/libpppd_plugin.so
-#    user root
-#    disabled
-#    oneshot
+service modemlog /system/bin/modemlog
+    class core
+    oneshot
 
-#service ulogd /system/xbin/ulogd
-#    user root
-#    disabled
-#   oneshot
+service ftmipcd /system/bin/ftmipcd
+    class late_start
+    user radio
+    group radio inet
+    oneshot
 
-#service firewall /system/bin/firewall.sh
-#    user root
-#    disabled
-#   oneshot
+service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
+    class late_start
+    group net_bt net_bt_admin
+    disabled
+    oneshot
 
-#service pm_init /system/bin/sh /system/usr/bin/pm_init.sh
-#    oneshot
-
-#service modemlog /system/bin/modemlog
-#   oneshot
-
-# aplogd is controlled by the persist.service.aplogd.enable system property
-#service aplogd /system/bin/aplogd
-#    socket ap_aol_cmd stream 666 system system
-#    group log system sdcard_rw
-#    oneshot
-
-#service fmradio /system/bin/fmradioserver
-#    disabled
-#    group bluetooth
-
-#service ftmipcd /system/bin/ftmipcd
-#    user radio
-#    group radio inet
-#    oneshot
-
-#service dlnasrv /system/bin/dlnasrv
-#    disabled
-#    oneshot
-
-#service dund_dialup /system/bin/dund --listen --channel=6 --nodetach --dialup
-#    group net_bt net_bt_admin
-#    disabled
-#    oneshot
-
-on property:dev.bootcomplete=1
-    start savebpver
-#    start loadpreinstalls
-
-#service mdm_panicd /system/bin/mdm_panicd
-#    oneshot
-
-#get BP version and save to misc
-#service savebpver /system/bin/SaveBPVer
-#    oneshot
+service mdm_panicd /system/bin/mdm_panicd
+    class late_start
+    oneshot
 
 #start Authentec VPN service
 service vpnclientpm /system/bin/vpnclientpm
     class late_start
     oneshot
     user root
-
-#service loadpreinstalls /system/bin/logwrapper /system/bin/loadpreinstalls.sh
-#    disabled
-#    oneshot

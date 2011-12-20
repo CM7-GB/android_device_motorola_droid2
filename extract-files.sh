@@ -63,7 +63,6 @@ adb pull /system/bin/napics.sh ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/pppd ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/pppd-ril ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/pvrsrvinit ../../../vendor/motorola/$DEVICE/proprietary/bin
-adb pull /system/bin/rild ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/secclkd ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/smc_pa_ctrl ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/smoduled ../../../vendor/motorola/$DEVICE/proprietary/bin
@@ -75,7 +74,6 @@ adb pull /system/bin/usbd ../../../vendor/motorola/$DEVICE/proprietary/bin
 adb pull /system/bin/battd ../../../vendor/motorola/$DEVICE/proprietary/bin
 
 adb pull /system/etc/amazon-kindle.properties ../../../vendor/motorola/$DEVICE/proprietary/etc
-adb pull /system/etc/arcplayer.cfg ../../../vendor/motorola/$DEVICE/proprietary/etc
 adb pull /system/etc/backup_targets.csv ../../../vendor/motorola/$DEVICE/proprietary/etc
 adb pull /system/etc/cameraCalFileDef5M.bin ../../../vendor/motorola/$DEVICE/proprietary/etc
 adb pull /system/etc/excluded-input-devices.xml ../../../vendor/motorola/$DEVICE/proprietary/etc
@@ -137,8 +135,6 @@ adb pull /system/lib/hw/sensors.droid2.so ../../../vendor/motorola/$DEVICE/propr
 adb pull /system/lib/hw/gps.droid2.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
 adb pull /system/lib/hw/overlay.omap3.so ../../../vendor/motorola/$DEVICE/proprietary/lib/hw
 
-adb pull /system/lib/liba2dp.so ../../../vendor/motorola/$DEVICE/proprietary/lib
-adb pull /system/lib/libaudiopolicy.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libHPImgApi.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libIMGegl.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libOMX.TI.AAC.decode.so ../../../vendor/motorola/$DEVICE/proprietary/lib
@@ -224,6 +220,7 @@ adb pull /system/tts/lang_pico/en-US_lh0_sg.bin ../../../vendor/motorola/$DEVICE
 adb pull /system/tts/lang_pico/en-US_ta.bin ../../../vendor/motorola/$DEVICE/proprietary/tts/lang_pico
 adb pull /system/tts/lang_pico/es-ES_ta.bin ../../../vendor/motorola/$DEVICE/proprietary/tts/lang_pico
 adb pull /system/tts/lang_pico/es-ES_zl0_sg.bin ../../../vendor/motorola/$DEVICE/proprietary/tts/lang_pico
+
 adb pull /system/usr/keychars/cdma_droid2-keypad.kcm.bin ../../../vendor/motorola/$DEVICE/proprietary/usr/keychars
 
 adb pull /system/usr/keylayout/cdma_droid2-keypad.kl ../../../vendor/motorola/$DEVICE/proprietary/usr/keylayout
@@ -271,7 +268,7 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/app/ProgramMenu.apk:/system/app/ProgramMenu.apk \\
     vendor/motorola/__DEVICE__/proprietary/app/ProgramMenuSystem.apk:/system/app/ProgramMenuSystem.apk \\
 
-# All the blobs necessary for droid2we
+# All the blobs necessary for droid2
 PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmoto_gps.so:/system/lib/libmoto_gps.so \\
     vendor/motorola/__DEVICE__/proprietary/bin/Hostapd:/system/bin/Hostapd \\
@@ -309,7 +306,6 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/bin/tstmetainfo:/system/bin/tstmetainfo \\
     vendor/motorola/__DEVICE__/proprietary/bin/usbd:/system/bin/usbd \\
     vendor/motorola/__DEVICE__/proprietary/etc/amazon-kindle.properties:/system/etc/amazon-kindle.properties \\
-    vendor/motorola/__DEVICE__/proprietary/etc/arcplayer.cfg:/system/etc/arcplayer.cfg \\
     vendor/motorola/__DEVICE__/proprietary/etc/backup_targets.csv:/system/etc/backup_targets.csv \\
     vendor/motorola/__DEVICE__/proprietary/etc/cameraCalFileDef5M.bin:/system/etc/cameraCalFileDef5M.bin \\
     vendor/motorola/__DEVICE__/proprietary/etc/excluded-input-devices.xml:/system/etc/excluded-input-devices.xml \\
@@ -394,19 +390,11 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmoto_netutil.so:/system/lib/libmoto_netutil.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmoto_ril.so:/system/lib/libmoto_ril.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmotodbgutils.so:/system/lib/libmotodbgutils.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libmotoims-sms.so:/system/lib/libmotoims-sms.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmtp_jni.so:/system/lib/libmtp_jni.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmtpstack.so:/system/lib/libmtpstack.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libnativedrm1.so:/system/lib/libnativedrm1.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/liboemcamera.so:/system/lib/liboemcamera.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libomx_arcomxcore_sharedlibrary.so:/system/lib/libomx_arcomxcore_sharedlibrary.so \\
-
-    vendor/motorola/__DEVICE__/proprietary/lib/libomx_evrcdec_sharedlibrary.so:/system/lib/libomx_evrcdec_sharedlibrary.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libomx_qcelpdec_sharedlibrary.so:/system/lib/libomx_qcelpdec_sharedlibrary.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libomx_qcelpenc_sharedlibrary.so:/system/lib/libomx_qcelpenc_sharedlibrary.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libomx_wmadec_sharedlibrary.so:/system/lib/libomx_wmadec_sharedlibrary.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libopencore_arcaudiolocal.so:/system/lib/libopencore_arcaudiolocal.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libopencore_arcaudiolocalreg.so:/system/lib/libopencore_arcaudiolocalreg.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libpanorama.so:/system/lib/libpanorama.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libpanorama_jni.so:/system/lib/libpanorama_jni.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libpkip.so:/system/lib/libpkip.so \\
@@ -460,7 +448,6 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/lib/hw/lights.droid2.so:/system/lib/hw/lights.droid2.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/hw/sensors.droid2.so:/system/lib/hw/sensors.droid2.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/hw/gps.droid2.so:/system/lib/hw/gps.droid2.so \\
-
     vendor/motorola/__DEVICE__/proprietary/lib/hw/overlay.omap3.so:/system/lib/hw/overlay.omap3.so
 
 EOF

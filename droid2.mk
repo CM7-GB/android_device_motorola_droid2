@@ -71,15 +71,12 @@ PRODUCT_COPY_FILES += \
 # Key Layouts
 PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
-    $(DEVICE_PREBUILT)/usr/idc/sholes-keypad.idc:system/usr/idc/sholes-keypad.idc \
-    $(DEVICE_PREBUILT)/usr/keylayout/sholes-keypad.kl:system/usr/keylayout/sholes-keypad.kl \
-    $(DEVICE_PREBUILT)/usr/keychars/sholes-keypad.kcm:system/usr/keychars/sholes-keypad.kcm \
-    $(DEVICE_PREBUILT)/usr/keychars/cpcap-key.kcm:system/usr/keychars/cpcap-key.kcm \
-    $(DEVICE_PREBUILT)/usr/keychars/qtouch-touchscreen.kcm:system/usr/keychars/qtouch-touchscreen.kcm \
+    $(DEVICE_PREBUILT)/usr/keylayout/cdma_droid2-keypad.kl:system/usr/keylayout/sholes-keypad.kl \
+    $(DEVICE_PREBUILT)/usr/keylayout/cdma_droid2-keypad.kl:system/usr/keylayout/cdma_droid2-keypad.kl \
 
 # Graphics
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PREBUILT)/imgtec/egl.cfg:system/lib/egl/egl.cfg \
+    $(DEVICE_PREBUILT)/etc/egl.cfg:system/etc/egl.cfg \
     $(DEVICE_PREBUILT)/imgtec/pvrsrvinit:system/bin/pvrsrvinit \
     $(DEVICE_PREBUILT)/imgtec/libEGL_POWERVR_SGX530_125.so:system/lib/egl/libEGL_POWERVR_SGX530_125.so \
     $(DEVICE_PREBUILT)/imgtec/libGLESv1_CM_POWERVR_SGX530_125.so:system/lib/egl/libGLESv1_CM_POWERVR_SGX530_125.so \
@@ -161,10 +158,9 @@ $(call inherit-product-if-exists, vendor/motorola/droid2/droid2-vendor.mk)
 $(call inherit-product-if-exists, vendor/cm/config/common_full_phone.mk)
 
 # stuff common to all Motorola phones
-$(call inherit-product, device/motorola/common/common_hijack.mk)
+#$(call inherit-product, device/motorola/common/common_hijack.mk)
 
 $(call inherit-product, build/target/product/full_base.mk)
 
-PRODUCT_BRAND := Motorola
 PRODUCT_NAME := cm_droid2
 PRODUCT_DEVICE := droid2
