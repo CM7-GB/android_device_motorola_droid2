@@ -60,19 +60,21 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/etc/powervr.ini:system/etc/powervr.ini \
     $(DEVICE_PREBUILT)/etc/vold.fstab:system/etc/vold.fstab \
     $(DEVICE_PREBUILT)/media/bootanimation.zip:system/media/bootanimation.zip \
-#    $(DEVICE_PREBUILT)/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
-#    $(DEVICE_PREBUILT)/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
-#    $(DEVICE_PREBUILT)/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
-#    $(DEVICE_PREBUILT)/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
-#    $(DEVICE_PREBUILT)/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
-#    $(DEVICE_PREBUILT)/usr/keylayout/cdma_droid2-keypad.kl:system/usr/keylayout/cdma_droid2-keypad.kl \
-#    $(DEVICE_PREBUILT)/usr/keylayout/usb_keyboard_102_en_us.kl:system/usr/keylayout/usb_keyboard_102_en_us.kl \
+
+# Wifi
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PREBUILT)/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
+    $(DEVICE_PREBUILT)/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
 
 # Key Layouts
 PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
-    $(DEVICE_PREBUILT)/usr/keylayout/cdma_droid2-keypad.kl:system/usr/keylayout/sholes-keypad.kl \
+    $(DEVICE_PREBUILT)/usr/keychars/omap-keypad.kcm:system/usr/keychars/omap-keypad.kcm \
     $(DEVICE_PREBUILT)/usr/keylayout/cdma_droid2-keypad.kl:system/usr/keylayout/cdma_droid2-keypad.kl \
+    $(DEVICE_PREBUILT)/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    $(DEVICE_PREBUILT)/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
+    $(DEVICE_PREBUILT)/usr/keylayout/usb_keyboard_102_en_us.kl:system/usr/keylayout/usb_keyboard_102_en_us.kl \
+    $(DEVICE_PREBUILT)/usr/keylayout/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl \
 
 # Graphics
 PRODUCT_COPY_FILES += \
@@ -98,13 +100,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     hwcomposer.default \
 
-# Lights
-#PRODUCT_PACKAGES += \
-#    lights.droid2 \
+ Lights
+PRODUCT_PACKAGES += \
+    lights.droid2 \
 
-# Sensors
-#PRODUCT_PACKAGES += \
-#    sensors.droid2 \
+ Sensors
+PRODUCT_PACKAGES += \
+    sensors.droid2 \
 
 # Wifi
 PRODUCT_PACKAGES += \
