@@ -65,6 +65,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/etc/wifi/tiwlan_ap.ini:system/etc/wifi/tiwlan_ap.ini \
     $(DEVICE_PREBUILT)/etc/wifi/tiwlan.ini:system/etc/wifi/tiwlan.ini \
+    $(DEVICE_PREBUILT)/etc/wpa_supplicant.conf:system/etc/wpa_supplicant.conf \
 
 # Key Layouts
 PRODUCT_COPY_FILES += \
@@ -95,6 +96,7 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/imgtec/libgles1_texture_stream.so:system/lib/egl/libgles1_texture_stream.so \
     $(DEVICE_PREBUILT)/imgtec/libgles2_texture_stream.so:system/lib/egl/libgles2_texture_stream.so \
     $(DEVICE_PREBUILT)/imgtec/gralloc.omap3.so:system/lib/hw/gralloc.omap3.so \
+    $(DEVICE_PREBUILT)/imgtec/libPVRScopeServices.so:system/lib/libPVRScopeServices.so \
 
 # HW Libs
 PRODUCT_PACKAGES += \
@@ -121,6 +123,7 @@ PRODUCT_PACKAGES += \
     Usb \
 
 # Sandbox
+# we should stop using prebuilts soon
 PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/bin/hijack:system/bin/hijack \
     $(DEVICE_PREBUILT)/bin/hijack.log_dump:system/bin/hijack.log_dump \
