@@ -19,7 +19,7 @@
 # not specialized for any geography.
 #
 
-DEVICE_PREBUILT := device/motorola/droid2/prebuilt
+DEVICE_PREBUILT := device/moto/droid2/prebuilt
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
@@ -27,16 +27,16 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 ## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
 PRODUCT_COPY_FILES += \
-    device/motorola/droid2/init.rc:root/init.rc \
-    device/motorola/droid2/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
-    device/motorola/droid2/init.mapphone_cdma.rc:root/init.mapphone_umts.rc \
-    device/motorola/droid2/init.mapphone_cdma.usb.rc:root/init.mapphone_cdma.usb.rc \
-    device/motorola/droid2/ueventd.mapphone_cdma.rc:root/ueventd.mapphone_cdma.rc
+    device/moto/droid2/init.rc:root/init.rc \
+    device/moto/droid2/init.mapphone_cdma.rc:root/init.mapphone_cdma.rc \
+    device/moto/droid2/init.mapphone_cdma.rc:root/init.mapphone_umts.rc \
+    device/moto/droid2/init.mapphone_cdma.usb.rc:root/init.mapphone_cdma.usb.rc \
+    device/moto/droid2/ueventd.mapphone_cdma.rc:root/ueventd.mapphone_cdma.rc
 
 ## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
 
 # Device overlay
-DEVICE_PACKAGE_OVERLAYS += device/motorola/droid2/overlay
+DEVICE_PACKAGE_OVERLAYS += device/moto/droid2/overlay
 
 # Permissions files
 PRODUCT_COPY_FILES += \
@@ -132,19 +132,19 @@ PRODUCT_LOCALES += hdpi
 
 # these need to be here for the installer, just put them here for now
 PRODUCT_COPY_FILES += \
-    device/motorola/droid2/releaseutils/mke2fs:system/bin/mke2fs \
-    device/motorola/droid2/releaseutils/tune2fs:system/bin/tune2fs \
-    device/motorola/droid2/releaseutils/check_kernel:system/etc/releaseutils/check_kernel \
-    device/motorola/droid2/releaseutils/finalize_release:system/etc/finalize_release
+    device/moto/droid2/releaseutils/mke2fs:system/bin/mke2fs \
+    device/moto/droid2/releaseutils/tune2fs:system/bin/tune2fs \
+    device/moto/droid2/releaseutils/check_kernel:system/etc/releaseutils/check_kernel \
+    device/moto/droid2/releaseutils/finalize_release:system/etc/finalize_release
 
 # copy all kernel modules under the "modules" directory to system/lib/modules
 PRODUCT_COPY_FILES += $(shell \
-    find device/motorola/droid2/modules -name '*.ko' \
+    find device/moto/droid2/modules -name '*.ko' \
     | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
     | tr '\n' ' ')
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/motorola/droid2/kernel
+LOCAL_KERNEL := device/moto/droid2/kernel
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
@@ -154,11 +154,11 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, hardware/ti/omap3/Android.mk)
 
-$(call inherit-product-if-exists, vendor/motorola/droid2/droid2-vendor.mk)
+$(call inherit-product-if-exists, vendor/moto/droid2/droid2-vendor.mk)
 $(call inherit-product-if-exists, vendor/cm/config/common_full_phone.mk)
 
-# stuff common to all Motorola phones
-#$(call inherit-product, device/motorola/common/common_hijack.mk)
+# stuff common to all moto phones
+#$(call inherit-product, device/moto/common/common_hijack.mk)
 
 $(call inherit-product, build/target/product/full_base.mk)
 

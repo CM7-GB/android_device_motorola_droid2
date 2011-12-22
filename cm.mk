@@ -8,7 +8,7 @@ PRODUCT_RELEASE_NAME := D2
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/motorola/droid2/droid2.mk)
+$(call inherit-product, device/moto/droid2/droid2.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := droid2
