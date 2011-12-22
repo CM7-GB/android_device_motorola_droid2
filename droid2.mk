@@ -102,11 +102,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     hwcomposer.default \
 
- Lights
+# Lights
 PRODUCT_PACKAGES += \
     lights.droid2 \
 
- Sensors
+# Sensors
 PRODUCT_PACKAGES += \
     sensors.droid2 \
 
