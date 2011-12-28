@@ -278,11 +278,14 @@ on post-fs
     insmod /system/lib/modules/sec.ko
 
 # Install product specific kernel modules
-#    exec /system/bin/load_modules.sh
+    exec /system/bin/load_modules.sh
 
 # chown/chmod for FOTA
     chown system system /cache/fota
     chmod 0770 /cache/fota
+
+# MTU for USB tethering
+    write /sys/class/net/gether0/mtu 1428
 
 on early-boot
 # Adjust the out of memory thresholds to account for the larget
@@ -312,7 +315,7 @@ on boot
     setprop ro.sys.atvc_allow_netmon_ih 0
     setprop ro.sys.atvc_allow_res_core 0
     setprop ro.sys.atvc_allow_res_panic 0
-    setprop ro.sys.atvc_allow_all_adb 0
+    setprop ro.sys.atvc_allow_all_adb 1
     setprop ro.sys.atvc_allow_all_core 0
     setprop ro.sys.atvc_allow_efem 0
     setprop ro.sys.atvc_allow_bp_log 0
@@ -376,10 +379,12 @@ on boot
 
 # The properties introduced by moto
 on property:sys.chargeonly.mode=1
-    start battd
+    class_reset main
+    class_reset late_start
     start console
-    write /data/chargeonlymode charging
-    exec /system/bin/charge_only_mode
+    start battd
+    start chargeonly
+    stop zygote
 
 # Power up to normal
 on property:tcmd.suspend=0
@@ -438,7 +443,7 @@ service usbd /system/bin/usbd
 
 service battd /system/bin/battd
     class core
-    socket battdsock stream 0660 mot_accy mot_accy
+    socket battdsock stream 0666 mot_accy mot_accy
     user root
     group mot_accy mot_pwric
     oneshot
@@ -479,16 +484,21 @@ service btdhcpd /system/bin/dnsmasq -C /etc/btpan.conf
     disabled
     oneshot
 
-service map /system/bin/sdptool add --channel=20 --network=2 MAP
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin
+service btdhcpd /system/bin/dnsmasq -C /system/etc/btpan.conf
+    user root
     disabled
     oneshot
 
 service napics /system/bin/sh /system/bin/napics.sh
     class late_start
     user root
+    disabled
+    oneshot
+
+service map /system/bin/sdptool add --channel=20 --network=2 MAP
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin
     disabled
     oneshot
 
@@ -516,6 +526,23 @@ service akmd2 /system/bin/akmd2
     user compass
     group compass misc input
 
+# turn on wifi for tcmd step one
+on property:tcmd.load_wlan=1
+    insmod /system/lib/modules/tiwlan_drv.ko
+# turn on wifi for tcmd step two
+on property:tcmd.load_wlan=2
+    start wlan_loader
+# turn on wifi for tcmd step three
+on property:tcmd.load_wlan=3
+    exec /system/bin/ifconfig tiwlan0 up
+# turn off wifi for tcmd step one
+on property:tcmd.unload_wlan=1
+    exec /system/bin/ifconfig tiwlan0 down
+# turn off wifi for tcmd step two
+on property:tcmd.unload_wlan=2
+    exec /system/bin/rmmod tiwlan_drv
+    setprop wlan.driver.status unloaded
+
 # Wifi services
 service wlan_loader /system/bin/wlan_loader -f /system/etc/wifi/fw_wlan1271.bin -i /system/etc/wifi/tiwlan.ini -e /pds/wifi/nvs_map.bin
     class late_start
@@ -533,7 +560,7 @@ service wlan_ap_loader /system/bin/logwrapper /system/bin/wlan_loader -f /system
     oneshot
 
 service hostapd /system/bin/logwrapper /system/bin/hostap -d /data/misc/wifi/hostapd.conf
-    class main
+    class late-start
     disabled
     oneshot
 

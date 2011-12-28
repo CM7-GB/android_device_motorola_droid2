@@ -38,6 +38,14 @@ PRODUCT_COPY_FILES += \
 # Device overlay
 DEVICE_PACKAGE_OVERLAYS += device/moto/droid2/overlay
 
+# high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+PRODUCT_PACKAGES := \
+    charger \
+    charger_res_images
+
 # Permissions files
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -71,6 +79,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/usr/idc/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
     $(DEVICE_PREBUILT)/usr/keychars/omap-keypad.kcm:system/usr/keychars/omap-keypad.kcm \
+    $(DEVICE_PREBUILT)/usr/keychars/qtouch-touchscreen.kcm:system/usr/keychars/qtouch-touchscreen.kcm \
     $(DEVICE_PREBUILT)/usr/keylayout/cdma_droid2-keypad.kl:system/usr/keylayout/cdma_droid2-keypad.kl \
     $(DEVICE_PREBUILT)/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     $(DEVICE_PREBUILT)/usr/keylayout/cpcap-key.kl:system/usr/keylayout/cpcap-key.kl \
@@ -110,6 +119,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.droid2 \
 
+PRODUCT_PACKAGES += \
+    audio.primary.droid2we \
+    audio_policy.droid2we \
+
+# Modem
+PRODUCT_PACKAGES += \
+    libaudiomodemgeneric \
+    libreference-cdma-sms \
+    rild \
+    radiooptions \
+
 # Wifi
 PRODUCT_PACKAGES += \
     libCustomWifi \
@@ -121,13 +141,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Camera \
     Usb \
+    Superuser \
+    su \
+    GlobalNwSwitch \ ##This is marked for removal and will only be included once
 
 # Sandbox
-# we should stop using prebuilts soon
+# we should stop using hijack prebuilts soon
 PRODUCT_COPY_FILES += \
     $(DEVICE_PREBUILT)/bin/hijack:system/bin/hijack \
     $(DEVICE_PREBUILT)/bin/hijack.log_dump:system/bin/hijack.log_dump \
     $(DEVICE_PREBUILT)/etc/hijack-boot.zip:system/etc/hijack-boot.zip \
+    $(DEVICE_PREBUILT)/bin/load_modules.sh:system/bin/load_modules.sh \
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
