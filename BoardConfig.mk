@@ -61,19 +61,19 @@ BOARD_KERNEL_BASE := 0x10000000
 # Sensors
 ENABLE_SENSORS_COMPAT := true
 
-# Connectivity - Wi-Fi
-BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
-#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := libCustomWifi
+# Wifi related defines
+BOARD_WLAN_DEVICE           := wl1271
 WPA_SUPPLICANT_VERSION      := VER_0_6_X
-BOARD_WLAN_DEVICE           := tiwlan0
+BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/tiwlan_drv.ko"
-#BOARD_WLAN_TI_STA_DK_ROOT   := system/wlan/ti/wilink_6_1
-WIFI_DRIVER_MODULE_ARG      := ""
-WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
-WIFI_FIRMWARE_LOADER        := "wlan_loader"
+WIFI_DRIVER_MODULE_NAME     := tiwlan_drv
 WIFI_DRIVER_FW_STA_PATH     := "/system/etc/wifi/fw_wlan1271.bin"
+WIFI_FIRMWARE_LOADER        := wlan_loader
+PRODUCT_WIRELESS_TOOLS      := true
+BOARD_SOFTAP_DEVICE         := wl1271
+AP_CONFIG_DRIVER_WILINK     := true
 WIFI_DRIVER_FW_AP_PATH      := "/system/etc/wifi/fw_tiwlan_ap.bin"
-CONFIG_DRIVER_CUSTOM        := true
+WPA_SUPPL_APPROX_USE_RSSI   := true
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
