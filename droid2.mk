@@ -19,6 +19,10 @@
 # not specialized for any geography.
 #
 
+# Build with bootchart compatibility
+# info on utilizing @ http://bit.ly/zwWpzK
+INIT_BOOTCHART := true
+
 DEVICE_PREBUILT := device/moto/droid2/prebuilt
 
 # The gps config appropriate for this device
@@ -119,9 +123,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.droid2 \
 
+# Audio
 PRODUCT_PACKAGES += \
-    audio.primary.droid2we \
-    audio_policy.droid2we \
+    audio.primary.droid2 \
+    audio_policy.droid2 \
 
 # Modem
 PRODUCT_PACKAGES += \
@@ -138,6 +143,7 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant.conf \
 
+# Misc
 PRODUCT_PACKAGES += \
     Camera \
     Usb \
