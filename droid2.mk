@@ -40,7 +40,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.ril.features=0x07 \
     persist.ril.mux.retries=500 \
     persist.ril.mux.sleep=2 \
-    ro.default_usb_mode=4 \
     ro.product.multi_touch_enabled=true \
     ro.product.max_num_touch=2 \
     ro.telephony.sms_segment_size=160 \
@@ -122,7 +121,9 @@ PRODUCT_PACKAGES += \
     libVendor_ti_omx \
     gps.droid2 \
     Usb \
-    libaudiopolicy
+    libaudiopolicy \
+    mot_boot_mode \
+    charge_only_mode
 
 #We don't need these packages these we are -for now- in the prop files
 #    sensors.droid2 \
