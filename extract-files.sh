@@ -221,9 +221,6 @@ adb pull /system/tts/lang_pico/en-US_ta.bin ../../../vendor/motorola/$DEVICE/pro
 adb pull /system/tts/lang_pico/es-ES_ta.bin ../../../vendor/motorola/$DEVICE/proprietary/tts/lang_pico
 adb pull /system/tts/lang_pico/es-ES_zl0_sg.bin ../../../vendor/motorola/$DEVICE/proprietary/tts/lang_pico
 
-adb pull /system/usr/keychars/cdma_droid2-keypad.kcm.bin ../../../vendor/motorola/$DEVICE/proprietary/usr/keychars
-
-adb pull /system/usr/keylayout/cdma_droid2-keypad.kl ../../../vendor/motorola/$DEVICE/proprietary/usr/keylayout
 adb pull /system/usr/keylayout/cpcap-key.kl ../../../vendor/motorola/$DEVICE/proprietary/usr/keylayout
 
 adb pull /system/xbin/backup ../../../vendor/motorola/$DEVICE/proprietary/xbin
@@ -424,11 +421,6 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/tts/lang_pico/en-US_ta.bin:/system/tts/lang_pico/en-US_ta.bin \\
     vendor/motorola/__DEVICE__/proprietary/tts/lang_pico/es-ES_ta.bin:/system/tts/lang_pico/es-ES_ta.bin \\
     vendor/motorola/__DEVICE__/proprietary/tts/lang_pico/es-ES_zl0_sg.bin:/system/tts/lang_pico/es-ES_zl0_sg.bin \\
-    vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2-keypad.kcm.bin:/system/usr/keychars/cdma_droid2-keypad.kcm.bin \\
-    vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2-keypad.kcm.bin:/system/usr/keychars/qwerty.kcm.bin \\
-    vendor/motorola/__DEVICE__/proprietary/usr/keychars/cdma_droid2-keypad.kcm.bin:/system/usr/keychars/qwerty2.kcm.bin \\
-    vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cdma_droid2-keypad.kl:/system/usr/keylayout/cdma_droid2-keypad.kl \\
-    vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cdma_droid2-keypad.kl:/system/usr/keylayout/qwerty.kl \\
     vendor/motorola/__DEVICE__/proprietary/usr/keylayout/cpcap-key.kl:/system/usr/keylayout/cpcap-key.kl \\
     vendor/motorola/__DEVICE__/proprietary/xbin/backup:/system/xbin/backup \\
     vendor/motorola/__DEVICE__/proprietary/xbin/drm1_func_test:/system/xbin/drm1_func_test \\
