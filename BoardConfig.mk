@@ -24,7 +24,6 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := false
-
 #BOARD_USE_YUV422I_DEFAULT_COLORFORMAT := true
 
 # inherit from the proprietary version
@@ -47,6 +46,9 @@ DROID2_HARDWARE := true
 
 # Include support for alt-lock and voice keys
 BOARD_GLOBAL_CFLAGS += -DDROID2_KEYPAD
+
+# Smooth zoom is broken with our libcamera
+BOARD_GLOBAL_CFLAGS += -DBROKEN_SMOOTH_ZOOM
 
 TARGET_NO_BOOTLOADER := false
 TARGET_BOOTLOADER_BOARD_NAME := droid2
@@ -104,13 +106,9 @@ TARGET_NEEDS_MOTOROLA_HIJACK := true
 
 # MOTOROLA
 USE_MOTOROLA_CODE := true
-ifdef USE_MOTOROLA_CODE
 COMMON_GLOBAL_CFLAGS += -DUSE_MOTOROLA_CODE
-endif
 USE_MOTOROLA_USERS := true
-ifdef USE_MOTOROLA_USERS
-COMMON_GLOBAL_CFLAGS += -DUSE_MOTOROLA_USERS
-endif
+COMMON_GLOBAL_CFLAGS += -DUSE_MOTOROLA_USERS -DMOTOROLA_UIDS
 
 TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /data/.recovery_mode; sync;"
 TARGET_RECOVERY_PRE_COMMAND_CLEAR_REASON := true

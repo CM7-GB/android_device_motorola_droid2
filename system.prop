@@ -25,7 +25,7 @@ ro.modem_available=0
 
 # Device gets 1% battery from charge_counter
 # Currently does not work with GB Kernel
-# ro.product.use_charge_counter=1
+ro.product.use_charge_counter=1
 
 # Default network type.
 # 4 => CDMA / EVDO.
