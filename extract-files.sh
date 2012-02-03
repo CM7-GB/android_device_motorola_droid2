@@ -199,7 +199,7 @@ adb pull /system/lib/libui3d.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libvideoeditorlite.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libwbxmlparser.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libaudio.so ../../../vendor/motorola/$DEVICE/proprietary/lib
-adb pull /system/lib/libcamera.so ../../../vendor/motorola/$DEVICE/proprietary/lib
+adb pull /system/lib/libcamera.so ../../../vendor/motorola/$DEVICE/proprietary/lib/libmotocamera.so
 adb pull /system/lib/libnmea.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/libril_rds.so ../../../vendor/motorola/$DEVICE/proprietary/lib
 adb pull /system/lib/librds_util.so ../../../vendor/motorola/$DEVICE/proprietary/lib
@@ -252,7 +252,7 @@ PRODUCT_COPY_FILES := \\
     vendor/motorola/__DEVICE__/proprietary/lib/libmoto_gps.so:obj/lib/libmoto_gps.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libarcsoft.so:obj/lib/libarcsoft.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libaudio.so:obj/lib/libaudio.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libcamera.so:obj/lib/libcamera.so \\
+    vendor/motorola/__DEVICE__/proprietary/lib/libmotocamera.so:obj/lib/libmotocamera.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libnmea.so:obj/lib/libnmea.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libril_rds.so:obj/lib/libril_rds.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/librds_util.so:obj/lib/librds_util.so \\
@@ -428,7 +428,7 @@ PRODUCT_COPY_FILES += \\
     vendor/motorola/__DEVICE__/proprietary/xbin/run_restore:/system/xbin/run_restore \\
     vendor/motorola/__DEVICE__/proprietary/xbin/ssmgrd:/system/xbin/ssmgrd \\
     vendor/motorola/__DEVICE__/proprietary/lib/libaudio.so:/system/lib/libaudio.so \\
-    vendor/motorola/__DEVICE__/proprietary/lib/libcamera.so:/system/lib/libcamera.so \\
+    vendor/motorola/__DEVICE__/proprietary/lib/libmotocamera.so:/system/lib/libmotocamera.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libnmea.so:/system/lib/libnmea.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/libril_rds.so:/system/lib/libril_rds.so \\
     vendor/motorola/__DEVICE__/proprietary/lib/librds_util.so:/system/lib/librds_util.so \\
