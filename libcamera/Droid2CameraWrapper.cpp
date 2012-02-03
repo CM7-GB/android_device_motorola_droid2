@@ -232,7 +232,7 @@ Droid2CameraWrapper::getParameters() const
 {
     CameraParameters params = mMotoInterface->getParameters();
     /* smooth zoom is broken */
-    params.set(CameraParameters::KEY_SMOOTH_ZOOM_SUPPORTED, "false");
+    params.remove(CameraParameters::KEY_SMOOTH_ZOOM_SUPPORTED);
     return params;
 }
 
@@ -245,7 +245,9 @@ Droid2CameraWrapper::sendCommand(int32_t cmd, int32_t arg1, int32_t arg2)
 void
 Droid2CameraWrapper::release()
 {
-    mMotoInterface->release();
+    // I'm not entirely comfortable not passing this call along, but doing so
+    // causes the whole thing to just crash and burn.
+    //mMotoInterface->release();
 }
 
 status_t
