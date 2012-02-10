@@ -131,11 +131,11 @@ PRODUCT_PACKAGES += \
     Usb \
     libaudiopolicy \
     mot_boot_mode \
-    charge_only_mode
+    charge_only_mode \
+    lights.droid2
 
 #We don't need these packages these we are -for now- in the prop files
-#    sensors.droid2 \
-#    lights.droid2
+#    sensors.droid2
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
